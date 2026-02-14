@@ -1,9 +1,10 @@
-import React from 'react'; 
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../store/CartSlice';
 import Navbar from './Navbar';
- 
- const products = {
+import './ProductList.css'; 
+
+const products = {
   'Air Purifying': [
     { id: 1, name: 'Snake Plant', price: 25, image: '/images/snake-plant.jpg', description: 'Excellent air purifier, low maintenance' },
     { id: 2, name: 'Peace Lily', price: 30, image: '/images/peace-lily.jpg', description: 'Beautiful white flowers, purifies air' },
@@ -32,10 +33,17 @@ import Navbar from './Navbar';
 
 const ProductList = () => {
   const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.items);
+  const [addedItems, setAddedItems] = useState({});
 
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
-   };
+    setAddedItems(prev => ({ ...prev, [product.id]: true }));
+  };
+
+  const isItemInCart = (productId) => {
+    return cartItems.some(item => item.id === productId) || addedItems[productId];
+  };
 
   return (
     <div className="product-listing">
@@ -62,8 +70,9 @@ const ProductList = () => {
                   <button
                     className="btn-add-to-cart"
                     onClick={() => handleAddToCart(product)}
-                   >
-                    Add to Cart
+                    disabled={isItemInCart(product.id)} 
+                  >
+                    {isItemInCart(product.id) ? 'Added to Cart' : 'Add to Cart'}
                   </button>
                 </div>
               </div>
