@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeItem, updateQuantity } from '../store/CartSlice';
 import Navbar from './Navbar';
-
-const CartPage = () => {
+import './CartItem.css';
+const CartItem = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
 
@@ -112,4 +112,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default CartItem;
