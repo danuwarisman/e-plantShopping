@@ -32,7 +32,7 @@ const CartItem = () => {
       <div className="cart-page">
         <Navbar />
         <div className="empty-cart">
-          <div className="empty-cart-icon">ðŸŒ¿</div>
+          <div className="empty-cart-icon">🌿</div>
           <h2>Your cart is empty</h2>
           <p>Looks like you haven't added any plants yet.</p>
           <Link to="/products" className="continue-shopping-btn">
@@ -98,7 +98,7 @@ const CartItem = () => {
                 aria-label={`Remove ${item.name}`}
                 title="Remove item"
               >
-                âœ•
+                ×
               </button>
             </div>
           ))}
@@ -111,7 +111,7 @@ const CartItem = () => {
           </div>
           <div className="cart-summary-row shipping">
             <span>Shipping</span>
-            <span>{totalAmount >= 50 ? 'ðŸŽ‰ Free' : `$5.99`}</span>
+            <span>{totalAmount >= 50 ? '🎉 Free' : `$5.99`}</span>
           </div>
           {totalAmount < 50 && (
             <p className="free-shipping-note">
